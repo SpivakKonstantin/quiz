@@ -1,0 +1,29 @@
+web:
+    build: ./docker/centos7-nginx
+    ports:
+        - "8080:80"
+    volumes:
+        - ".:/var/www"
+    links:
+        - php
+
+php:
+    build: ./docker/centos7-php7.1-remi
+    ports:
+       - "9000:9000"
+    volumes:
+        - ".:/var/www"
+    links:
+        - mariadb
+
+
+mariadb:
+    image: "mariadb"
+
+    volumes:
+        - "./docker/mysql:/var/lib/mysql"
+    environment:
+        - MYSQL_ROOT_PASSWORD=1
+        - MYSQL_DATABASE=quiz
+        - MYSQL_USER=root
+        - MYSQL_PASSWORD=1
