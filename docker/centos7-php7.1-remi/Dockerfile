@@ -36,8 +36,7 @@ RUN yum install -y \
 RUN npm install bower -g
 RUN yum clean all
 
-WORKDIR /var/www/web
-RUN bower install socket.io-client --allow-root
+
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"

@@ -17,8 +17,15 @@ useradd $PHP_FPM_USER -g $PHP_FPM_GROUP
 sed -i -e "s/^user = .*/user = ${PHP_FPM_USER}/g" /etc/php-fpm.d/www.conf
 sed -i -e "s/^group = .*/user = ${PHP_FPM_GROUP}/g" /etc/php-fpm.d/www.conf
 
-php /var/www/composer.phar install
-php /var/www/yii migrate
+composer config -g github-oauth.github.com b0eb54cdd6249b69186e2cde33a17cd6fdf6e28a
+
+sleep 15
+
+cd /var/www/ && composer install && php yii migrate --interactive=0
+cd /var/www/web && bower install socket.io-client --allow-root
+
 
 
 php-fpm --nodaemonize
+
+

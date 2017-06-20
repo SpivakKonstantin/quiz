@@ -7,6 +7,19 @@ web:
     links:
         - php
 
+mariadb:
+    image: "mariadb"
+    restart: always
+    ports:
+       - "3306:3306"
+#    volumes:
+#        - "./docker/mysql:/var/lib/mysql"
+    environment:
+        - MYSQL_ROOT_PASSWORD=1
+        - MYSQL_DATABASE=yii2basic
+        - MYSQL_USER=root
+        - MYSQL_PASSWORD=1
+
 php:
     build: ./docker/centos7-php7.1-remi
     ports:
@@ -17,17 +30,7 @@ php:
         - mariadb
 
 
-mariadb:
-    image: "mariadb"
-    ports:
-       - "3306:3306"
-    volumes:
-        - "./docker/mysql:/var/lib/mysql"
-    environment:
-        - MYSQL_ROOT_PASSWORD=1
-        - MYSQL_DATABASE=yii2basic
-        - MYSQL_USER=root
-        - MYSQL_PASSWORD=1
+
 node:
   build: ./docker/node
   volumes:
