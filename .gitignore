@@ -4,3 +4,4 @@ Thumbs.db
 composer.phar
 /vendor
 /web/vendor
+/docker/mysql
