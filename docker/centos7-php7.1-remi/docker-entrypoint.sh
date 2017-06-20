@@ -24,8 +24,6 @@ sleep 15
 cd /var/www/ && composer install && php yii migrate --interactive=0
 cd /var/www/web && bower install socket.io-client --allow-root
 
-
-
 php-fpm --nodaemonize
 
 
