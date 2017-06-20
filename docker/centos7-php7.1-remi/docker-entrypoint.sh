@@ -18,5 +18,7 @@ sed -i -e "s/^user = .*/user = ${PHP_FPM_USER}/g" /etc/php-fpm.d/www.conf
 sed -i -e "s/^group = .*/user = ${PHP_FPM_GROUP}/g" /etc/php-fpm.d/www.conf
 
 php /var/www/composer.phar install
+php /var/www/yii migrate
+
 
 php-fpm --nodaemonize
