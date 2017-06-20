@@ -1,7 +1,7 @@
 web:
     build: ./docker/centos7-nginx
     ports:
-        - "8080:80"
+        - "80:80"
     volumes:
         - ".:/var/www"
     links:
@@ -19,11 +19,19 @@ php:
 
 mariadb:
     image: "mariadb"
-
+    ports:
+       - "3306:3306"
     volumes:
         - "./docker/mysql:/var/lib/mysql"
     environment:
         - MYSQL_ROOT_PASSWORD=1
-        - MYSQL_DATABASE=quiz
+        - MYSQL_DATABASE=yii2basic
         - MYSQL_USER=root
         - MYSQL_PASSWORD=1
+node:
+  build: ./docker/node
+  volumes:
+    - "./node:/src/app"
+  ports:
+    - "3000:3000"
+  command: nodemon -L app/app.js

@@ -21,6 +21,8 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
+        'js/radio.js',
+        'vendor/bower/socket.io-client/dist/socket.io.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

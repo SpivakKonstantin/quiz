@@ -27,13 +27,27 @@ RUN yum install -y \
 		php-soap \
 		php-redis \
 		php-fpm \
-		composer
+		composer \
+		git\
+		npm
+
+
+
+RUN npm install bower -g
 RUN yum clean all
 
+WORKDIR /var/www/web
+RUN bower install socket.io-client --allow-root
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
+RUN php composer.phar global require "fxp/composer-asset-plugin:^1.3.1"
 RUN mv composer.phar /usr/local/bin/composer
+
+#
+#WORKDIR /var/www
+#
+#RUN composer install
 
 COPY ./configs/www.conf /etc/php-fpm.d/www.conf
 
@@ -41,6 +55,8 @@ VOLUME /var/www
 
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
+
+RUN ln -sf /dev/stderr /var/log/php-fpm/error.log
 
 EXPOSE 9000
 

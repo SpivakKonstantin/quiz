@@ -1,0 +1,11 @@
+{
+  "name": "app",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon -L app/bin/www.js"
+  },
+  "dependencies": {
+    "socket.io": "2.0.3"
+  }
+}

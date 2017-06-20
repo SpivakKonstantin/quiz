@@ -15,7 +15,6 @@ ADD configs/site.conf /etc/nginx/conf.d
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 
-#VOLUME /etc/nginx/conf.d/host.conf
 VOLUME /var/www
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log 
