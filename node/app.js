@@ -2,7 +2,6 @@ var app = require('http').createServer(handler)
     , io = require('socket.io').listen(app);
 
 app.listen(3000);
-console.log('ok');
 function handler (req, res) {}
 
 io.sockets.on('connection', function (socket) {

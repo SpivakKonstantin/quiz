@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="quiz-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?> <?php echo "You login in system(emulation), your id is: ".$userId; ?></h1>
 
     <p>
         <?= Html::a('Create Quiz', ['create'], ['class' => 'btn btn-success']) ?>

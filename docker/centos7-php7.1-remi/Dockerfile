@@ -58,7 +58,7 @@ RUN chmod +x /docker-entrypoint.sh
 RUN ln -sf /dev/stderr /var/log/php-fpm/error.log
 
 EXPOSE 9000
-
+ADD ./configs/index.html /var/www/web/index.html
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 CMD ["php-fpm", "--nodaemonize"]

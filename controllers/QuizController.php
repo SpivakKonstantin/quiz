@@ -16,6 +16,7 @@ use yii\filters\VerbFilter;
  */
 class QuizController extends Controller
 {
+    const USERID = 2;
     /**
      * @inheritdoc
      */
@@ -43,6 +44,7 @@ class QuizController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'userId' => self::USERID,
         ]);
     }
 
@@ -83,7 +85,7 @@ class QuizController extends Controller
         $model = new Quiz();
 
         //Emulation user login
-        $userId = 2;
+        $userId = self::USERID;
         $post = Yii::$app->request->post();
         $post['Quiz']['userId'] = $userId;
         if ($model->load($post) && $model->save()) {
@@ -111,7 +113,7 @@ class QuizController extends Controller
 
             }
 
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect('?r=quiz');
         } else {
             return $this->render('create', [
                 'model' => $model,

@@ -23,7 +23,7 @@ sleep 15
 
 cd /var/www/ && composer install --prefer-source --no-interaction  -o && php yii migrate --interactive=0
 cd /var/www/web && bower install socket.io-client --allow-root
-
+cd /var/www/web && rm index.html
 php-fpm --nodaemonize
 
 

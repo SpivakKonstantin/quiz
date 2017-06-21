@@ -1,5 +1,15 @@
 $( document ).ready(function() {
+    /**
+     *
+     * @type {boolean}
+     */
     disabledSocket = false;
+
+    /**
+     * emulation login user
+     * @type {number}
+     */
+    userId = 2;
     var socket = io('http://localhost:3000');
 
     socket.on('fromnode', function(data){

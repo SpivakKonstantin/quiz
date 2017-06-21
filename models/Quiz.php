@@ -85,7 +85,7 @@ class Quiz extends \yii\db\ActiveRecord
 
         }
 
-        $this->result = $correctCount/$questionCount*100;
+        $this->result = (int)($correctCount/$questionCount*100);
 
     }
 
