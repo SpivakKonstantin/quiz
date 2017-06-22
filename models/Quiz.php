@@ -92,4 +92,33 @@ class Quiz extends \yii\db\ActiveRecord
     public function getTestResult(){
         return $this->result;
     }
+
+    public function saveQuestionsAndAnswers($post){
+        for($i = 1; $i <= $post['Quiz']['count']; $i++){
+
+            $quizQuestion = new QuizQuestion();
+            $quizQuestion->load(['QuizQuestion' => ['quizId' => $this->id]]);
+            $quizQuestion->save();
+
+
+            /**
+             * from ANSWER_MIN to ANSWER_MAX
+             */
+            $answersCount = rand(QuizAnswer::ANSWER_MIN, QuizAnswer::ANSWER_MAX);
+
+            /**
+             * it's random correct answer
+             */
+            $answersIsCorrect = rand(1, $answersCount);
+            for($a = 1; $a <= $answersCount; $a++){
+                $quizAnswer = new QuizAnswer();
+                $arr['QuizAnswer']['quizQuestionId'] = $quizQuestion->id;
+                $arr['QuizAnswer']['isCorrect'] = ($answersIsCorrect == $a) ? 1 : 0;
+                $quizAnswer->load($arr);
+                $quizAnswer->save();
+            }
+
+
+        }
+    }
 }

@@ -1,6 +1,6 @@
 **Hello!**
 
-**I recomended use Docker for quick installation.**
+**I recommend use Docker for quick installation.**
 
 If you use docker you can get easy development envirement. (https://www.docker.com/)
 
@@ -15,9 +15,9 @@ $ docker-compose up -d
 ```
 And then you need to wait. 10-15 min 
 
-**If you instalation without Docker**
+**If you installation without Docker**
 
-You need to have: php > 5.6 (7.x recomend)
+You need to have: php (7.x recomend)
 
 Mariadb or Mysql
 
@@ -33,9 +33,18 @@ And you need to create empty dbname "yii2basic" and change db config: /config/db
 php yii migrate --interactive=0
 ```
 ```bash
-cd /web && bower install socket.io-client --allow-root
+cd /web
+```
+```bash
+bower install socket.io-client
 ```
 
 ```bash
-cd /app && node app.js
+cd /app
+```
+```bash
+npm install socket.io
+```
+```bash
+node app.js
 ```

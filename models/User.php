@@ -13,6 +13,11 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord
 {
+
+    /**
+     * emulation user id
+     */
+    const USER_ID = 2;
     /**
      * @inheritdoc
      */

@@ -15,6 +15,8 @@ use Yii;
  */
 class QuizAnswer extends \yii\db\ActiveRecord
 {
+    const ANSWER_MIN = 2;
+    const ANSWER_MAX = 5;
     /**
      * @inheritdoc
      */

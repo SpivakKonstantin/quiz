@@ -66,8 +66,6 @@ class QuizController extends Controller
                 $result->setAnswers($post);
                 $result->save();
                 return $this->redirect(['index']);
-            }else{
-                var_dump($post['q1']);exit;
             }
         }
         return $this->render('view', [
@@ -84,34 +82,11 @@ class QuizController extends Controller
     {
         $model = new Quiz();
 
-        //Emulation user login
-        $userId = self::USERID;
         $post = Yii::$app->request->post();
-        $post['Quiz']['userId'] = $userId;
+
         if ($model->load($post) && $model->save()) {
 
-            for($i = 1; $i <= $post['Quiz']['count']; $i++){
-
-                $quizQuestion = new QuizQuestion();
-                $quizQuestion->load(['QuizQuestion' => ['quizId' => $model->id]]);
-                $quizQuestion->save();
-
-
-                /**
-                 * from 2 to 5
-                 */
-                $answersCount = rand(2,5);
-                $answersIsCorrect = rand(1, $answersCount);
-                for($a = 1; $a <= $answersCount; $a++){
-                    $quizAnswer = new QuizAnswer();
-                    $arr['QuizAnswer']['quizQuestionId'] = $quizQuestion->id;
-                    $arr['QuizAnswer']['isCorrect'] = ($answersIsCorrect == $a) ? 1 : 0;
-                    $quizAnswer->load($arr);
-                    $quizAnswer->save();
-                }
-
-
-            }
+            $model->saveQuestionsAndAnswers($post);
 
             return $this->redirect('?r=quiz');
         } else {
